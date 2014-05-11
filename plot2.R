@@ -21,6 +21,7 @@ powerData<-data.frame(powerData,datetime=strptime(datetime, "%Y-%m-%d %H:%M:%S")
 png(filename= "plot2.png",width = 480, height = 480)
 
 ## Create Plot
+par(bg="transparent")
 plot(powerData$datetime,powerData$Global_active_power,type="l", lwd = 1,xlab="",ylab="Global Active Power (kilowatts)")
 
 ## Close png device

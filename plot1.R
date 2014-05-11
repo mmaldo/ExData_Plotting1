@@ -14,6 +14,7 @@ powerData<-powerData[powerData$Date== "2007-02-01" | powerData$Date== "2007-02-0
 png(filename= "plot1.png",width = 480, height = 480)
 
 ## Create histogram of Global Active Power
+par(bg="transparent")
 hist(powerData$Global_active_power,main="Global Active Power",xlab="Global Active Power (kilowatts)",col="Red")
 
 ## Close png device

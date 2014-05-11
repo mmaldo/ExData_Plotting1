@@ -20,7 +20,7 @@ png(filename= "plot4.png",width = 480, height = 480)
 
 ## Create Plot
 ## set to 2 plots per row and 2 columns
-par(mfrow=c(2,2))
+par(mfrow=c(2,2),bg="transparent")
 ## Create plot of Global Active Power vs datetime
 plot(powerData$datetime,powerData$Global_active_power,type="l", lwd = 1,xlab="",ylab="Global Active Power (kilowatts)")
 ## Create plot of Voltage vs datetime

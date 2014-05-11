@@ -21,6 +21,7 @@ powerData<-data.frame(powerData,datetime=strptime(datetime, "%Y-%m-%d %H:%M:%S")
 png(filename= "plot3.png",width = 480, height = 480)
 
 ## Create Plot
+par(bg="transparent")
 plot(powerData$datetime,powerData$Sub_metering_1, type="l",ylab="Energy sub metering",xlab="")
 lines(powerData$datetime,powerData$Sub_metering_2,type="l",col="Red")
 lines(powerData$datetime,powerData$Sub_metering_3,type="l",col="Blue")
