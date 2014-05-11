@@ -10,10 +10,10 @@ powerData[,"Date"]<-as.Date(powerData$Date, format="%d/%m/%Y")
 ## Subset data based on date range
 powerData<-powerData[powerData$Date== "2007-02-01" | powerData$Date== "2007-02-02",]
 
-## open png device
+## open png device, width and height are 480
 png(filename= "plot1.png",width = 480, height = 480)
 
-## Create histogram of Global Active Power
+## Create histogram of Global Active Power and set backround to transparent
 par(bg="transparent")
 hist(powerData$Global_active_power,main="Global Active Power",xlab="Global Active Power (kilowatts)",col="Red")
 
