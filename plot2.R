@@ -1,5 +1,6 @@
 ## Read in the power data
-powerData<-read.table("./data/exdata-data-household_power_consumption/household_power_consumption.txt",sep=";",header=TRUE,na.strings ="?")
+powerData<-read.table(unz("./data/exdata-data-household_power_consumption.zip","household_power_consumption.txt"), sep=";",header=TRUE,na.strings ="?")
+
 
 ## Remove NA rows
 powerData<-na.omit(powerData)

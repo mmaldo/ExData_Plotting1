@@ -1,5 +1,6 @@
 ## Read in the power data
-powerData<-read.table("./data/exdata-data-household_power_consumption/household_power_consumption.txt",sep=";",header=TRUE,na.strings ="?")
+powerData<-read.table(unz("./data/exdata-data-household_power_consumption.zip","household_power_consumption.txt"), sep=";",header=TRUE,na.strings ="?")
+
 
 ## Remove NA rows
 powerData<-na.omit(powerData)
@@ -16,35 +17,24 @@ datetime<-paste(powerData$Date, powerData$Time,sep=" ")
 ## convert new date time column to POSIXlt
 powerData<-data.frame(powerData,datetime=strptime(datetime, "%Y-%m-%d %H:%M:%S"))
 
+
 ## open png device, width and height are 480
 png(filename= "plot4.png",width = 480, height = 480)
 
 ## Create Plot
 ## set to 2 plots per row and 2 columns
 par(mfrow=c(2,2),bg="transparent")
-
 ## Create plot of Global Active Power vs datetime
 plot(powerData$datetime,powerData$Global_active_power,type="l", lwd = 1,xlab="",ylab="Global Active Power (kilowatts)")
-
 ## Create plot of Voltage vs datetime
 plot(powerData$datetime,powerData$Voltage,type="l", lwd = 1,xlab="datetime",ylab="Voltage")
-
 ## Create plot of Sub_metering vs datetime
-## Create base plot with sub_metering_1 vs datetime,type = line plot, x label is empty, y label is
-## "Energy sub metering", sub_metering_1 is represented with a black line
 plot(powerData$datetime,powerData$Sub_metering_1, type="l",ylab="Energy sub metering",xlab="")
-
-## add sub_metering_2 line to plot as a red line
 lines(powerData$datetime,powerData$Sub_metering_2,type="l",col="Red")
-
-## add sub_metering_3 line to plot as a blue line
 lines(powerData$datetime,powerData$Sub_metering_3,type="l",col="Blue")
-
-## add a legend to the top right of plot, line thickness in legend  is 1
 legend("topright", legend= c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), col = c("black","blue","red"), lwd=1)
-
-## Create plot of Global Reactive Power vs datetime, color is black, line thickness is 1, y label is "Global_reactive_power", type is line plot
-plot(powerData$datetime,powerData$Global_reactive_power,type="l", lwd = 1,xlab="datetime",ylab="Global_reactive_power",col=rgb(0,0,0,255,maxColorValue=255))
+## Create plot of Global Reactive Power vs datetime
+plot(powerData$datetime,powerData$Global_reactive_power,type="l", lwd = 0.1,xlab="datetime",ylab="Global_reactive_power",col=rgb(0,0,0,255,maxColorValue=255))
 
 ## Close png device
 dev.off() 
